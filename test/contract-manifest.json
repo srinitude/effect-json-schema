@@ -1,0 +1,34 @@
+{
+  "contracts": [
+    {
+      "id": "standard-surface",
+      "behavior": "~standard exposes version 1, vendor, types, jsonSchema.input and jsonSchema.output",
+      "redReason": "src/index.ts does not export the adapter or type helpers yet",
+      "command": "npm test"
+    },
+    {
+      "id": "targets",
+      "behavior": "draft-2020-12, draft-07 and openapi-3.0 emit target-specific JSON Schema records",
+      "redReason": "target dispatch is not implemented yet",
+      "command": "npm test"
+    },
+    {
+      "id": "unknown-target",
+      "behavior": "unrecognized targets throw TypeError",
+      "redReason": "target validation is not implemented yet",
+      "command": "npm test"
+    },
+    {
+      "id": "typed-transform",
+      "behavior": "Effect transform encoded input and decoded output remain distinct at runtime and type level",
+      "redReason": "input/output schema selection and InferInput/InferOutput exports are not implemented yet",
+      "command": "npm run typecheck"
+    },
+    {
+      "id": "library-options",
+      "behavior": "libraryOptions are forwarded into Effect JSON Schema generation",
+      "redReason": "options forwarding is not implemented yet",
+      "command": "npm test"
+    }
+  ]
+}
