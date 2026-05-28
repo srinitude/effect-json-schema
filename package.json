@@ -1,0 +1,40 @@
+{
+  "name": "effect-json-schema",
+  "version": "0.1.0",
+  "description": "Small Effect-based Standard JSON Schema adapter.",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "scripts": {
+    "ci": "npm run lint && npm run typecheck && npm run build && npm test && npm run check:loc && npm run check:placeholders",
+    "lint": "tsc -p tsconfig.json --noEmit --pretty false",
+    "typecheck": "tsc -p tsconfig.json --noEmit --pretty false",
+    "build": "tsc -p tsconfig.build.json",
+    "test": "vitest run --passWithNoTests",
+    "check:loc": "node scripts/check-loc.mjs",
+    "check:placeholders": "node scripts/check-placeholders.mjs"
+  },
+  "dependencies": {
+    "effect": "^3.21.2"
+  },
+  "devDependencies": {
+    "@standard-schema/spec": "^1.1.0",
+    "typescript": "^5.9.3",
+    "vitest": "^4.0.14"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "license": "MIT",
+  "packageManager": "pnpm@11.0.9"
+}
