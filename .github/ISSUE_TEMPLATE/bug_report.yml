@@ -1,0 +1,26 @@
+name: Bug report
+description: Report incorrect Standard JSON Schema behavior
+labels: [bug]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: What happened?
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Reproduction
+      description: Provide the smallest Effect Schema and options that reproduce the bug.
+      render: ts
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Version
+      placeholder: 0.1.0
+    validations:
+      required: true

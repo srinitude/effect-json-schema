@@ -21,6 +21,7 @@ export const toStandardJsonSchema = <S extends Schema.Schema.Any>(schema: S): St
   "~standard": {
     version: 1,
     vendor,
+    types: undefined as StandardJSONSchemaV1.Types<Schema.Schema.Encoded<S>, Schema.Schema.Type<S>> | undefined,
     jsonSchema: {
       input: (options) => emit(Schema.encodedSchema(schema), options),
       output: (options) => emit(Schema.typeSchema(schema), options)

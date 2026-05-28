@@ -1,8 +1,9 @@
 {
   "name": "effect-json-schema",
   "version": "0.1.0",
-  "description": "Small Effect-based Standard JSON Schema adapter.",
+  "description": "Tiny Effect Schema adapter for Standard JSON Schema V1.",
   "type": "module",
+  "sideEffects": false,
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "exports": {
@@ -13,28 +14,55 @@
   },
   "files": [
     "dist",
-    "README.md"
+    "README.md",
+    "LICENSE"
   ],
   "scripts": {
-    "ci": "npm run lint && npm run typecheck && npm run build && npm test && npm run check:loc && npm run check:placeholders",
+    "ci": "npm run lint && npm run typecheck && npm run build && npm test && npm run check:loc && npm run check:placeholders && npm run check:repo && npm run check:pack && npm run check:publint",
     "lint": "tsc -p tsconfig.json --noEmit --pretty false",
     "typecheck": "tsc -p tsconfig.json --noEmit --pretty false",
     "build": "tsc -p tsconfig.build.json",
-    "test": "vitest run --passWithNoTests",
+    "test": "vitest run",
     "check:loc": "node scripts/check-loc.mjs",
-    "check:placeholders": "node scripts/check-placeholders.mjs"
+    "check:placeholders": "node scripts/check-placeholders.mjs",
+    "check:repo": "node scripts/check-repo-health.mjs",
+    "check:pack": "node scripts/check-package-smoke.mjs",
+    "check:publint": "publint --strict",
+    "prepublishOnly": "npm run ci"
+  },
+  "keywords": [
+    "effect",
+    "effect-schema",
+    "json-schema",
+    "standard-schema",
+    "openapi",
+    "typescript"
+  ],
+  "author": "Kiren Srinivasan",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/srinitude/effect-json-schema.git"
+  },
+  "bugs": {
+    "url": "https://github.com/srinitude/effect-json-schema/issues"
+  },
+  "homepage": "https://github.com/srinitude/effect-json-schema#readme",
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
   },
   "dependencies": {
     "@standard-schema/spec": "^1.1.0",
     "effect": "^3.21.2"
   },
   "devDependencies": {
+    "publint": "^0.3.21",
     "typescript": "^5.9.3",
     "vitest": "^4.0.14"
   },
   "engines": {
     "node": ">=20"
   },
-  "license": "MIT",
   "packageManager": "pnpm@11.0.9"
 }

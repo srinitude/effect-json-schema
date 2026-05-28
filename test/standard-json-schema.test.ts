@@ -23,6 +23,7 @@ describe("Standard JSON Schema V1 adapter", () => {
     expect(standard.vendor).toBe("effect-json-schema")
     expect(typeof standard.vendor).toBe("string")
     expect(standard.vendor.length).toBeGreaterThan(0)
+    expect("types" in standard).toBe(true)
     expect(typeof standard.jsonSchema.input).toBe("function")
     expect(typeof standard.jsonSchema.output).toBe("function")
   })
