@@ -25,10 +25,10 @@
     "check:placeholders": "node scripts/check-placeholders.mjs"
   },
   "dependencies": {
+    "@standard-schema/spec": "^1.1.0",
     "effect": "^3.21.2"
   },
   "devDependencies": {
-    "@standard-schema/spec": "^1.1.0",
     "typescript": "^5.9.3",
     "vitest": "^4.0.14"
   },

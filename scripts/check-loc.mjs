@@ -16,13 +16,21 @@ const codeLines = (text) => text.split(/\r?\n/).filter((line) => {
   return trimmed.length > 0 && !trimmed.startsWith("//")
 })
 
+const construct = /^\s*((export\s+)?(const|function|class|interface|type)\b|(?:it|test)\()/
+const openBrace = String.fromCharCode(123)
+const openBracket = String.fromCharCode(91)
+const continues = (line) => {
+  const last = line.trim().at(-1)
+  return last === "(" || last === openBrace || last === openBracket || last === "<" || last === "," || last === "="
+}
+
 const scan = (path) => {
   const lines = readFileSync(path, "utf8").split(/\r?\n/)
   const physical = codeLines(lines.join("\n")).length
   const issues = physical > 200 ? [path + ": " + physical + " lines"] : []
   let start = 0
   for (let i = 0; i < lines.length; i += 1) {
-    if (/^\s*(export\s+)?(const|function|class|interface|type)\b/.test(lines[i])) {
+    if (construct.test(lines[i])) {
       const result = measure(lines, i)
       if (result.lines > 30) issues.push(path + ":" + (i + 1) + " construct has " + result.lines + " lines")
       if (result.depth > 3) issues.push(path + ":" + (i + 1) + " nesting depth is " + result.depth)
@@ -48,6 +56,7 @@ const measure = (lines, start) => {
     max = Math.max(max, brace)
     brace -= count(line, "}")
     end = i
+    if (!seen && !continues(line)) break
     if ((seen && brace <= 0) || (!seen && /[;,]$/.test(line.trim()))) break
   }
   const chunk = lines.slice(start, end + 1).join("\n")

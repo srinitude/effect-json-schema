@@ -70,7 +70,7 @@ describe("Standard JSON Schema V1 adapter", () => {
       target: "draft-07",
       libraryOptions: { additionalPropertiesStrategy: "allow" }
     })
-    expect(schema).not.toHaveProperty("additionalProperties")
+    expect(schema).toHaveProperty("additionalProperties", true)
   })
 })
 
